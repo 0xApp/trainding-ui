@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { getProfile } from "../../api/api";
 import "./dashboard.css";
 
 const DashBoard = () => {

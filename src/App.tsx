@@ -6,17 +6,20 @@ import SearchPage from "./components/searchpage/search";
 import DashBoard from "./components/dashboard/dashboard";
 import Navbar from "./components/navbar/navbar";
 import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import AppProviders from "./providers";
 
 function App() {
   return (
-    <Router>
-      <Navbar/>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/search" element={<SearchPage />} />
-        <Route path="/dashboard" element={<DashBoard/>} />
-      </Routes>
-    </Router>
+    <AppProviders>
+      <Router>
+        <Navbar />
+        <Routes>
+          <Route path="/search" element={<SearchPage />} />
+          <Route path="/dashboard" element={<DashBoard />} />
+          <Route path="/" element={<Login />} />
+        </Routes>
+      </Router>
+    </AppProviders>
   );
 }
 
