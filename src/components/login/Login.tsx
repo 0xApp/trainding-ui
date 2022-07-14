@@ -7,7 +7,7 @@ const Login = () =>{
     <form action="/examples/actions/confirmation.php" method="post">
         <h2 className="text-center">Log in</h2>       
         <div className="form-group">
-            <input type="text" className="form-control" placeholder="Username"/>
+            <input type="text" className="form-control" placeholder="Username" />
         </div>
         <div className="form-group">
             <input type="password" className="form-control" placeholder="Password"/>
