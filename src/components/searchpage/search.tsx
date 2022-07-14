@@ -1,8 +1,39 @@
 import React from "react";
+import { useStoreActions, useStoreState } from "../../store";
 
 import "./search.css";
 
+interface Tag {
+  key: string;
+  value: string;
+}
+
+const tags: Tag[] = [
+  {
+    key: "sql",
+    value: "SQL",
+  },
+  {
+    key: "oops",
+    value: "Object Oriented Programming",
+  },
+  {
+    key: "java",
+    value: "Java",
+  },
+  {
+    key: "dotnet",
+    value: ".NET",
+  },
+];
+
 const SearchPage = () => {
+  const { profile } = useStoreState((s) => s.profileStore);
+  const { setGoal, setTag } = useStoreActions(s => s.profileStore);
+
+  const handleCheckedChange = (tag: string, checked: boolean) => {
+    setTag({ tag, checked });
+  };
   return (
     <div className="container">
       <br />
@@ -34,40 +65,22 @@ const SearchPage = () => {
           <h3>Popular topics</h3>
           <div className="checkboxs container">
             <div>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                name="sql"
-                id="sql"
-              />
-              <label className="form-check-label">SQL</label>
-            </div>
-            <div>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                name="java"
-                id="java"
-              />
-              <label className="form-check-label">Java</label>
-            </div>
-            <div>
-              <input
-                className="form-check-input"
-                type="checkbox"
-                name="dotnet"
-                id="dotnet"
-              />
-              <label className="form-check-label">.NET</label>
-              <div>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="oops"
-                  id="oops"
-                />
-                <label className="form-check-label">OOPS</label>
-              </div>
+              {tags.map((t) => (
+                <div key={t.key}>
+                  <label className="form-check-label">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      name={t.key}
+                      checked={profile !== null && profile.tags.some((tag) => tag === t.key)}
+                      onChange={(e) =>
+                        handleCheckedChange(t.key, e.target.checked)
+                      }
+                    />
+                    {t.value}
+                  </label>
+                </div>
+              ))}
             </div>
           </div>
         </div>

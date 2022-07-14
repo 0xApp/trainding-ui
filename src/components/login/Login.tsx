@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { useStoreActions, useStoreState } from "../../store";
 import "./login.css";
 const Login = () => {
   const { profile, loggedIn } = useStoreState((store) => store.profileStore);
   const { login } = useStoreActions((store) => store.profileStore);
-  const [user, setUser] = useState("");
+    const [user, setUser] = useState("");
+    
+    const navigate = useNavigate();
 
   const handleLogin = () => {
     if (user) {
       login(user)
         .then((e) => {
-          alert(JSON.stringify(e));
+            alert(JSON.stringify(e));
+            navigate('/search');
         })
         .catch((e) => {
           alert(JSON.stringify(e));
