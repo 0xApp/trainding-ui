@@ -27,10 +27,6 @@ const Login = () => {
     setUser(e.target.value);
   };
 
-  useEffect(() => {
-    alert(JSON.stringify({ loggedIn, profile }));
-  }, [loggedIn, profile]);
-
   return (
     <div className="login-form">
       <form>

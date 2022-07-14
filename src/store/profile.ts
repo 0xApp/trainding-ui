@@ -53,7 +53,7 @@ const profileStore: ProfileStoreModel = {
     var { profile } = getState();
     try {
       await setGoal(profile!.id, payload);
-      
+
       return Promise.resolve(true);
     } catch (error) {
       actions.setProfile(null);
@@ -64,10 +64,18 @@ const profileStore: ProfileStoreModel = {
     var { profile } = getState();
     try {
       await setTag(profile!.id, payload.tag, payload.checked);
-      actions.setProfile({
-        ...profile!,
-        tags: [...profile!.tags, payload.tag]
-      });
+      if (payload.checked) {
+        actions.setProfile({
+          ...profile!,
+          tags: [...profile!.tags, payload.tag],
+        });
+      } else {
+        actions.setProfile({
+          ...profile!,
+          tags: profile!.tags.filter(t => t !== payload.tag),
+        });
+      }
+
       return Promise.resolve(true);
     } catch (error) {
       actions.setProfile(null);

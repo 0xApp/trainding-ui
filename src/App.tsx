@@ -1,11 +1,10 @@
-import React from "react";
 import "./App.css";
 
 import Login from "./components/login/Login";
 import SearchPage from "./components/searchpage/search";
 import DashBoard from "./components/dashboard/dashboard";
 import Navbar from "./components/navbar/navbar";
-import { BrowserRouter as Router, Route, Link, Routes } from "react-router-dom";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppProviders from "./providers";
 
 function App() {
