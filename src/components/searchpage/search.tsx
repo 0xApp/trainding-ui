@@ -8,6 +8,11 @@ interface Tag {
   value: string;
 }
 
+interface Goal {
+  key: number;
+  value: string;
+}
+
 const tags: Tag[] = [
   {
     key: "sql",
@@ -27,13 +32,36 @@ const tags: Tag[] = [
   },
 ];
 
+var goals: Goal[] = [
+  {
+    key: 1,
+    value: "0-2 hours / week",
+  },
+  {
+    key: 2,
+    value: "2-5 hours / week",
+  },
+  {
+    key: 3,
+    value: "5-10 hours / week",
+  },
+  {
+    key: 4,
+    value: "More than 10 hours / week",
+  },
+];
+
 const SearchPage = () => {
   const { profile } = useStoreState((s) => s.profileStore);
-  const { setGoal, setTag } = useStoreActions(s => s.profileStore);
+  const { setGoal, setTag } = useStoreActions((s) => s.profileStore);
 
   const handleCheckedChange = (tag: string, checked: boolean) => {
     setTag({ tag, checked });
   };
+  const handleGoalChange = (goal: number) => {
+    setGoal(goal);
+  };
+
   return (
     <div className="container">
       <br />
@@ -59,7 +87,6 @@ const SearchPage = () => {
           </form>
         </div>
       </div>
-      &nbsp; &nbsp; &nbsp;
       <div className="blk1">
         <div className="interests container pt-3">
           <h3>Popular topics</h3>
@@ -72,10 +99,13 @@ const SearchPage = () => {
                       className="form-check-input"
                       type="checkbox"
                       name={t.key}
-                      checked={profile !== null && profile.tags.some((tag) => tag === t.key)}
-                      onChange={(e) =>
-                        handleCheckedChange(t.key, e.target.checked)
+                      checked={
+                        profile !== null &&
+                        profile.tags.some((tag) => tag === t.key)
                       }
+                      onChange={(e) => {
+                        handleCheckedChange(t.key, e.target.checked);
+                      }}
                     />
                     {t.value}
                   </label>
@@ -87,47 +117,25 @@ const SearchPage = () => {
         &nbsp; &nbsp; &nbsp;
         <div className="goals container pt-3 ">
           <h3>Set your learning goals</h3>
-          <div className="form-check">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="radio1"
-              name="optradio"
-              value="option1"
-              checked
-            />
-            0-2 hours/ week<label className="form-check-label"></label>
-          </div>
-          <div className="form-check">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="radio2"
-              name="optradio"
-              value="option2"
-            />
-            2-5 hours/ week<label className="form-check-label"></label>
-          </div>
-          <div className="form-check">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="radio3"
-              name="optradio"
-              value="option3"
-            />
-            5-10 hours/ week<label className="form-check-label"></label>
-          </div>
-          <div className="form-check">
-            <input
-              type="radio"
-              className="form-check-input"
-              id="radio4"
-              name="optradio"
-              value="option4"
-            />
-            More then10 hours/ week<label className="form-check-label"></label>
-          </div>
+          {goals.map((g) => (
+            <div key={g.key}>
+              <label className="form-check-label">
+                <input
+                  className="form-check-input"
+                  type="radio"
+                  name={g.key.toString()}
+                  checked={
+                    profile !== null &&
+                    profile.goal === g.key
+                  }
+                  onChange={(e) => {
+                    handleGoalChange(g.key);
+                  }}
+                />
+                {g.value}
+              </label>
+            </div>
+          ))}
         </div>
       </div>
     </div>

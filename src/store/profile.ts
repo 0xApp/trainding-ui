@@ -53,7 +53,10 @@ const profileStore: ProfileStoreModel = {
     var { profile } = getState();
     try {
       await setGoal(profile!.id, payload);
-
+      actions.setProfile({
+        ...profile!,
+        goal: payload,
+      });
       return Promise.resolve(true);
     } catch (error) {
       actions.setProfile(null);
@@ -72,7 +75,7 @@ const profileStore: ProfileStoreModel = {
       } else {
         actions.setProfile({
           ...profile!,
-          tags: profile!.tags.filter(t => t !== payload.tag),
+          tags: profile!.tags.filter((t) => t !== payload.tag),
         });
       }
 
