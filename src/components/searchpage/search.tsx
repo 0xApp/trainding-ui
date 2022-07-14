@@ -71,6 +71,7 @@ const SearchPage = () => {
             </div>
           </div>
         </div>
+        &nbsp; &nbsp; &nbsp;
         <div className="goals container pt-3 ">
           <h3>Set your learning goals</h3>
           <div className="form-check">
