@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Profile } from "../types/apitypes";
+import { Profile, UserCourse } from "../types/apitypes";
 
 const baseUrl: string = process.env.REACT_APP_API_URL!;
 
@@ -25,4 +25,9 @@ export async function setTag(
     tag: tag,
     isSet: checked,
   });
+}
+
+export async function getUserCourse(id: string): Promise<UserCourse[]> {
+  var response = await axios.get(`${baseUrl}/Course/user?id=${id}`);
+  return response.data;
 }

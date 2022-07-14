@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useStoreActions, useStoreState } from "../../store";
 
 import "./search.css";
@@ -15,20 +16,49 @@ interface Goal {
 
 const tags: Tag[] = [
   {
-    key: "sql",
-    value: "SQL",
+    key: "dotnet",
+    value: ".NET",
   },
   {
-    key: "oops",
-    value: "Object Oriented Programming",
+    key: "dba",
+    value: "Database Administrator",
+  },
+  {
+    key: "docker",
+    value: "Docker",
+  },
+  {
+    key: "devops",
+    value: "DevOps",
+  },
+  {
+    key: "full-stack",
+    value: "Full Stack Development",
   },
   {
     key: "java",
     value: "Java",
   },
   {
-    key: "dotnet",
-    value: ".NET",
+    key: "microservice",
+    value: "Microservice Architecture",
+  },
+  {
+    key: "oops",
+    value: "Object Oriented Programming",
+  },
+
+  {
+    key: "springboot",
+    value: "Sprint Boot",
+  },
+  {
+    key: "sql",
+    value: "SQL",
+  },
+  {
+    key: "unit-test",
+    value: "Unit Testing",
   },
 ];
 
@@ -54,6 +84,8 @@ var goals: Goal[] = [
 const SearchPage = () => {
   const { profile } = useStoreState((s) => s.profileStore);
   const { setGoal, setTag } = useStoreActions((s) => s.profileStore);
+
+  const navigate = useNavigate();
 
   const handleCheckedChange = (tag: string, checked: boolean) => {
     setTag({ tag, checked });
@@ -87,56 +119,55 @@ const SearchPage = () => {
           </form>
         </div>
       </div>
-      <div className="blk1">
-        <div className="interests container pt-3">
-          <h3>Popular topics</h3>
-          <div className="checkboxs container">
-            <div>
-              {tags.map((t) => (
-                <div key={t.key}>
-                  <label className="form-check-label">
-                    <input
-                      className="form-check-input"
-                      type="checkbox"
-                      name={t.key}
-                      checked={
-                        profile !== null &&
-                        profile.tags.some((tag) => tag === t.key)
-                      }
-                      onChange={(e) => {
-                        handleCheckedChange(t.key, e.target.checked);
-                      }}
-                    />
-                    {t.value}
-                  </label>
-                </div>
-              ))}
-            </div>
+      <div className="row">
+        <div className="col">
+          <div>
+            <h3>Popular topics</h3>
+            {tags.map((t) => (
+              <div key={t.key}>
+                <label className="form-check-label">
+                  <input
+                    className="form-check-input"
+                    type="checkbox"
+                    name={t.key}
+                    checked={
+                      profile !== null &&
+                      profile.tags.some((tag) => tag === t.key)
+                    }
+                    onChange={(e) => {
+                      handleCheckedChange(t.key, e.target.checked);
+                    }}
+                  />
+                  {t.value}
+                </label>
+              </div>
+            ))}
           </div>
         </div>
-        &nbsp; &nbsp; &nbsp;
-        <div className="goals container pt-3 ">
-          <h3>Set your learning goals</h3>
-          {goals.map((g) => (
-            <div key={g.key}>
-              <label className="form-check-label">
-                <input
-                  className="form-check-input"
-                  type="radio"
-                  name={g.key.toString()}
-                  checked={
-                    profile !== null &&
-                    profile.goal === g.key
-                  }
-                  onChange={(e) => {
-                    handleGoalChange(g.key);
-                  }}
-                />
-                {g.value}
-              </label>
-            </div>
-          ))}
+        <div className="col">
+          <div className="goals pt-3 ">
+            <h3>Set your learning goals</h3>
+            {goals.map((g) => (
+              <div key={g.key}>
+                <label className="form-check-label">
+                  <input
+                    className="form-check-input"
+                    type="radio"
+                    name={g.key.toString()}
+                    checked={profile !== null && profile.goal === g.key}
+                    onChange={(e) => {
+                      handleGoalChange(g.key);
+                    }}
+                  />
+                  {g.value}
+                </label>
+              </div>
+            ))}
+          </div>
         </div>
+      </div>
+      <div className="text-right">
+        <button className="btn btn-socgen" onClick={() => navigate('/dashboard')}>Goto Dashboard</button>
       </div>
     </div>
   );
