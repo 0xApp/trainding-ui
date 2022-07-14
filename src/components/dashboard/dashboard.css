@@ -1,0 +1,21 @@
+.block{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.blocks{
+    border: 2px solid black;
+    height: 500px;
+}
+
+.block h3{
+    text-align: center;
+}
+
+.sugg-course{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
