@@ -38,9 +38,7 @@
 }
 
 .xxx{
-  background: #06beb6;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #48b1bf, #06beb6);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #48b1bf, #06beb6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(180deg, #E8E8E8 43.99%, #D53229 100%);
 
 }
 
@@ -105,11 +103,9 @@ a:focus {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #4ECDC4;  /* fallback for old browsers */
-background: -webkit-linear-gradient(to bottom, #556270, #4ECDC4);  /* Chrome 10-25, Safari 5.1-6 */
-background: linear-gradient(to bottom, #556270, #4ECDC4); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+background: linear-gradient(180deg, #E8E8E8 43.99%, #D53229 100%);
 
-    color: white;
+    color: black;
     transition: all 0.3s;
 }
 
@@ -127,7 +123,7 @@ background: linear-gradient(to bottom, #556270, #4ECDC4); /* W3C, IE 10+/ Edge, 
 }
 
 #sidebar ul p {
-    color: #fff;
+    color: black;
     padding: 10px;
 }
 

@@ -2,13 +2,15 @@ import React from "react";
 import { updateUserCourse } from "../../api/api";
 import useBuddies from "../../hooks/useBuddies";
 import useUserCourses from "../../hooks/useUserCourses";
-import { useStoreState } from "../../store";
+import { useStoreActions, useStoreState } from "../../store";
 import CourseInfo from "./CourseInfo";
 
 const DashboardV2 = () => {
   const { profile } = useStoreState((s) => s.profileStore);
   const { data: buddies } = useBuddies();
   const { suggested, ongoing, upcoming, mutate } = useUserCourses(profile!.id);
+  const {} = useStoreState((s) => s.chatStore);
+  const { openChat } = useStoreActions((s) => s.chatStore);
 
   return (
     <div>
@@ -20,7 +22,9 @@ const DashboardV2 = () => {
                 <i className="material-icons lg">view_list</i>
                 <a>12</a>
               </div>
-              <p>Courses completed</p>
+              <p className="text-primary" style={{ fontWeight: "bold" }}>
+                Courses completed
+              </p>
               <div className="pt-2">
                 <div className="progress">
                   <div
@@ -40,7 +44,9 @@ const DashboardV2 = () => {
                 <i className="material-icons lg">workspace_premium</i>
                 <a>5</a>
               </div>
-              <p>Certificate earned</p>
+              <p className="text-primary" style={{ fontWeight: "bold" }}>
+                Certificate earned
+              </p>
               <div className="pt-2">
                 <div className="progress">
                   <div
@@ -60,7 +66,9 @@ const DashboardV2 = () => {
                 <i className="material-icons lg">show_chart</i>
                 <a>7</a>
               </div>
-              <p>Courses in progress</p>
+              <p className="text-primary" style={{ fontWeight: "bold" }}>
+                Courses in progress
+              </p>
               <div className="pt-2">
                 <div className="progress">
                   <div
@@ -80,7 +88,9 @@ const DashboardV2 = () => {
                 <i className="material-icons lg">outlined_flag</i>
                 <a>85%</a>
               </div>
-              <p>Learning goal</p>
+              <p className="text-primary" style={{ fontWeight: "bold" }}>
+                Learning goal
+              </p>
               <div className="pt-2">
                 <div className="progress">
                   <div
@@ -178,7 +188,25 @@ const DashboardV2 = () => {
             </div>
             <div className="p-3" style={{ background: "white" }}>
               {buddies.map((b) => (
-                <div key={b}>{b}</div>
+                <div key={b} className="card card-bordered card-bordering mt-3">
+                  <div className="card-body slim">
+                    <div className="row">
+                      <div className="col" style={{ fontWeight: "bold" }}>
+                        {b}
+                      </div>
+                      <div className="col text-right">
+                        <button
+                          className="btn btn-flat btn-sm"
+                          onClick={() => {
+                            openChat(b);
+                          }}
+                        >
+                          <i className="material-icons lg">chat</i>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
