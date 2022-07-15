@@ -104,10 +104,16 @@ const DashboardV2 = () => {
           </div>
           <div className="col-md-3">
             <div>
+              <ul className="list-group">
               <h4>Upcoming Lessons</h4>
-              {upcoming.map((c) => (
-                <div>{c.name}</div>
-              ))}
+                <li className="list-group-item">
+                  <h4>Course 1</h4>
+                  {/* <h4>Upcoming Lessons</h4>
+                  {upcoming.map((c) => (
+                    <div>{c.name}</div>
+                  ))} */}
+                </li>
+              </ul>
             </div>
             <div className="mt-3">
               <h4>Progress</h4>
@@ -120,7 +126,9 @@ const DashboardV2 = () => {
             <div>
               <h4>Training Buddies</h4>
             </div>
-            <div className="p-3" style={{ background: "white" }}>buddies</div>
+            <div className="p-3" style={{ background: "white" }}>
+              buddies
+            </div>
           </div>
         </div>
       </div>

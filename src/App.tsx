@@ -8,7 +8,7 @@ import Navbar from "./components/navbar/navbar";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AppProviders from "./providers";
 import SidebarContainer from "./components/layout/SidebarContainer";
-
+import FeedBack from "./components/feedback/feedback";
 function App() {
   return (
     <AppProviders>
@@ -19,6 +19,7 @@ function App() {
             <Route path="/search" element={<SearchPage />} />
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/dashboard-v2" element={<DashBoardV2 />} />
+            <Route path="/feedback" element={<FeedBack />} />
             <Route path="/" element={<Login />} />
             {/* <Route path="/" children={<SidebarContainer />} /> */}
           </Routes>
