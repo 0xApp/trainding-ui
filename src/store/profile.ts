@@ -1,11 +1,15 @@
 import { action, Action, computed, Computed, thunk, Thunk } from "easy-peasy";
 import { getProfile, setGoal, setTag } from "../api/api";
-import { Profile } from "../types/apitypes";
+import { Profile, UserCourse } from "../types/apitypes";
 import { AppStoreModel } from "./model";
 
 export interface ProfileStoreModel {
   profile: Profile | null;
   setProfile: Action<ProfileStoreModel, Profile | null>;
+
+  courses: UserCourse[];
+  setCourses: Action<ProfileStoreModel, UserCourse[]>;
+
   login: Thunk<ProfileStoreModel, string, {}, AppStoreModel, Promise<boolean>>;
   setGoal: Thunk<
     ProfileStoreModel,
@@ -29,16 +33,13 @@ const profileStore: ProfileStoreModel = {
   setProfile: action((state, payload) => {
     state.profile = payload;
   }),
+
+  courses: [],
+  setCourses: action((state, payload) => {
+    state.courses = payload;
+  }),
+
   login: thunk(async (actions, payload) => {
-    // getProfile(payload)
-    //   .then((p) => {
-    //     console.log({ p });
-    //     actions.setProfile(p);
-    //   })
-    //   .catch(() => {
-    //     console.log({ error: 'login failed' });
-    //     actions.setProfile(null);
-    //   });
     try {
       var p = await getProfile(payload);
       actions.setProfile(p);

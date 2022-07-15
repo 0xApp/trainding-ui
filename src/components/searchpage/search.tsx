@@ -167,7 +167,7 @@ const SearchPage = () => {
         </div>
       </div>
       <div className="text-right">
-        <button className="btn btn-socgen" onClick={() => navigate('/dashboard')}>Goto Dashboard</button>
+        <button className="btn btn-socgen" onClick={() => navigate('/dashboard-v2')}>Goto Dashboard</button>
       </div>
     </div>
   );

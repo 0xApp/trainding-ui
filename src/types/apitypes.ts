@@ -15,3 +15,9 @@ export interface UserCourse {
   progress: number;
   state: string;
 }
+
+export interface UserCourseUpdate {
+  course: string;
+  user: string;
+  state: string;
+}

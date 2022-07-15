@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Profile, UserCourse } from "../types/apitypes";
+import { Profile, UserCourse, UserCourseUpdate } from "../types/apitypes";
 
 const baseUrl: string = process.env.REACT_APP_API_URL!;
 
@@ -30,4 +30,8 @@ export async function setTag(
 export async function getUserCourse(id: string): Promise<UserCourse[]> {
   var response = await axios.get(`${baseUrl}/Course/user?id=${id}`);
   return response.data;
+}
+
+export async function updateUserCourse(request: UserCourseUpdate): Promise<void> {
+  return await axios.post(`${baseUrl}/Course/update`, request);
 }
