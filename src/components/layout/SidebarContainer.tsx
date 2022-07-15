@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import logo from "../../assets/img/logo.png";
 import { useStoreState } from "../../store";
 import Chat from "../chatwindow/Chat";
@@ -32,7 +33,7 @@ const SidebarContainer: React.FC<Props> = ({ children }) => {
             <a href="#">Help &amp; Support</a>
           </li>
           <li>
-            <a href="#">Settings</a>
+            <Link to="/search">Settings</Link>
           </li>
         </ul>
       </nav>

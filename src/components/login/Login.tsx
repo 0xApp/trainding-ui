@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { useStoreActions, useStoreState } from "../../store";
 import "./login.css";
 const Login = () => {
-  const { profile, loggedIn } = useStoreState((store) => store.profileStore);
   const { login } = useStoreActions((store) => store.profileStore);
     const [user, setUser] = useState("");
     
@@ -13,11 +12,9 @@ const Login = () => {
     if (user) {
       login(user)
         .then((e) => {
-            alert(JSON.stringify(e));
             navigate('/search');
         })
         .catch((e) => {
-          alert(JSON.stringify(e));
         });
       setUser("");
     }
@@ -65,11 +62,6 @@ const Login = () => {
           </a>
         </div>
       </form>
-      <p className="text-center">
-        {/* <a href="#">{profile === null ? "Not Logged in" : "Logged In"}</a> */}
-        {loggedIn && <span>Logged In</span>}
-        {!loggedIn && <span>Not In</span>}
-      </p>
     </div>
   );
 };

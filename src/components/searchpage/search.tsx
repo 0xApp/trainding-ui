@@ -97,6 +97,7 @@ const SearchPage = () => {
   return (
     <div className="container">
       <br />
+
       <div className="row justify-content-center">
         <div className="col-12 col-md-10 col-lg-8">
           <form className="card card-sm">
@@ -119,29 +120,72 @@ const SearchPage = () => {
           </form>
         </div>
       </div>
-      <div className="row">
+      <div className="row mt-5">
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h4 className="card-title">Popular Topics</h4>
+              <div>
+                {tags.map((t) => (
+                  <label
+                    key={t.key}
+                    className={`btn btn-toggle-primary ${
+                      profile !== null &&
+                      profile.tags.some((tag) => tag === t.key)
+                        ? "active"
+                        : ""
+                    }`}
+                    style={{ margin: "10px 5px" }}
+                  >
+                    <input
+                      type="checkbox"
+                      name={t.key}
+                      checked={
+                        profile !== null &&
+                        profile.tags.some((tag) => tag === t.key)
+                      }
+                      style={{ width: "30px" }}
+                      onChange={(e) => {
+                        handleCheckedChange(t.key, e.target.checked);
+                      }}
+                    />
+                    {t.value}
+                  </label>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="col">
+          <div className="card">
+            <div className="card-body">
+              <h4 className="card-title">Set your learning goals</h4>
+              <div>
+                {goals.map((g) => (
+                  <div key={g.key}>
+                    <label className="form-check-label">
+                      <input
+                        className="form-check-input"
+                        type="radio"
+                        name={g.key.toString()}
+                        checked={profile !== null && profile.goal === g.key}
+                        onChange={(e) => {
+                          handleGoalChange(g.key);
+                        }}
+                      />
+                      {g.value}
+                    </label>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {/* <div className="row">
         <div className="col">
           <div>
             <h3>Popular topics</h3>
-            {tags.map((t) => (
-              <div key={t.key}>
-                <label className="form-check-label">
-                  <input
-                    className="form-check-input"
-                    type="checkbox"
-                    name={t.key}
-                    checked={
-                      profile !== null &&
-                      profile.tags.some((tag) => tag === t.key)
-                    }
-                    onChange={(e) => {
-                      handleCheckedChange(t.key, e.target.checked);
-                    }}
-                  />
-                  {t.value}
-                </label>
-              </div>
-            ))}
           </div>
         </div>
         <div className="col">
@@ -165,9 +209,14 @@ const SearchPage = () => {
             ))}
           </div>
         </div>
-      </div>
+      </div> */}
       <div className="text-right">
-        <button className="btn btn-socgen" onClick={() => navigate('/dashboard-v2')}>Goto Dashboard</button>
+        <button
+          className="btn btn-socgen"
+          onClick={() => navigate("/dashboard-v2")}
+        >
+          Goto Dashboard
+        </button>
       </div>
     </div>
   );
