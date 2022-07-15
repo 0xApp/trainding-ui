@@ -28,14 +28,11 @@ const SidebarContainer: React.FC<Props> = ({ children }) => {
               Home
             </a>
           </li>
-          <li className="active">
-            <a href="#">About</a>
+          <li>
+            <a href="#">Help &amp; Support</a>
           </li>
           <li>
-            <a href="#">Portfolio</a>
-          </li>
-          <li>
-            <a href="#">Contact</a>
+            <a href="#">Settings</a>
           </li>
         </ul>
       </nav>
