@@ -14,14 +14,16 @@ const DashboardV2 = () => {
           <div className="card card-bordered card-bordering">
             <div className="card-body">
               <div>
-                <i className="material-icons lg">list_alt</i>
+                <i className="material-icons lg">view_list</i>
+                <a>12</a>
               </div>
+              <p>Courses completed</p>
               <div className="pt-2">
                 <div className="progress">
                   <div
-                    className="progress-bar bg-danger"
+                    className="progress-bar bg-success"
                     role="progressbar"
-                    style={{ width: "25%" }}
+                    style={{ width: "55%" }}
                   />
                 </div>
               </div>
@@ -32,14 +34,16 @@ const DashboardV2 = () => {
           <div className="card card-bordered card-bordering">
             <div className="card-body">
               <div>
-                <i className="material-icons lg">list_alt</i>
+                <i className="material-icons lg">workspace_premium</i>
+                <a>5</a>
               </div>
+              <p>Certificate earned</p>
               <div className="pt-2">
                 <div className="progress">
                   <div
-                    className="progress-bar bg-danger"
+                    className="progress-bar bg-info"
                     role="progressbar"
-                    style={{ width: "25%" }}
+                    style={{ width: "15%" }}
                   />
                 </div>
               </div>
@@ -50,14 +54,16 @@ const DashboardV2 = () => {
           <div className="card card-bordered card-bordering">
             <div className="card-body">
               <div>
-                <i className="material-icons lg">list_alt</i>
+                <i className="material-icons lg">show_chart</i>
+                <a>7</a>
               </div>
+              <p>Courses in progress</p>
               <div className="pt-2">
                 <div className="progress">
                   <div
-                    className="progress-bar bg-danger"
+                    className="progress-bar bg-warning"
                     role="progressbar"
-                    style={{ width: "25%" }}
+                    style={{ width: "65%" }}
                   />
                 </div>
               </div>
@@ -68,14 +74,16 @@ const DashboardV2 = () => {
           <div className="card card-bordered card-bordering">
             <div className="card-body">
               <div>
-                <i className="material-icons lg">list_alt</i>
+                <i className="material-icons lg">outlined_flag</i>
+                <a>85%</a>
               </div>
+              <p>Learning goal</p>
               <div className="pt-2">
                 <div className="progress">
                   <div
                     className="progress-bar bg-danger"
                     role="progressbar"
-                    style={{ width: "25%" }}
+                    style={{ width: "85%" }}
                   />
                 </div>
               </div>
@@ -105,7 +113,7 @@ const DashboardV2 = () => {
           <div className="col-md-3">
             <div>
               <ul className="list-group">
-              <h4>Upcoming Lessons</h4>
+                <h4>Upcoming Lessons</h4>
                 <li className="list-group-item">
                   <h4>Course 1</h4>
                   {/* <h4>Upcoming Lessons</h4>
