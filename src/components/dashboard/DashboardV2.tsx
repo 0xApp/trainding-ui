@@ -1,11 +1,14 @@
 import React from "react";
+import { updateUserCourse } from "../../api/api";
+import useBuddies from "../../hooks/useBuddies";
 import useUserCourses from "../../hooks/useUserCourses";
 import { useStoreState } from "../../store";
 import CourseInfo from "./CourseInfo";
 
 const DashboardV2 = () => {
   const { profile } = useStoreState((s) => s.profileStore);
-  const { suggested, ongoing, upcoming } = useUserCourses(profile!.id);
+  const { data: buddies } = useBuddies();
+  const { suggested, ongoing, upcoming, mutate } = useUserCourses(profile!.id);
 
   return (
     <div>
@@ -100,12 +103,21 @@ const DashboardV2 = () => {
             <div>
               {suggested.map((c) => (
                 <CourseInfo
+                  key={c.id}
+                  id={c.id}
                   description={
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
                   }
                   status={c.state}
                   title={c.name}
                   duration={c.duration}
+                  onUpdate={(course, state) => {
+                    updateUserCourse({
+                      course,
+                      state,
+                      user: profile!.id,
+                    }).finally(() => mutate());
+                  }}
                 />
               ))}
             </div>
@@ -114,19 +126,49 @@ const DashboardV2 = () => {
             <div>
               <ul className="list-group">
                 <h4>Upcoming Lessons</h4>
-                <li className="list-group-item">
-                  <h4>Course 1</h4>
-                  {/* <h4>Upcoming Lessons</h4>
-                  {upcoming.map((c) => (
-                    <div>{c.name}</div>
-                  ))} */}
-                </li>
+                {upcoming.map((c) => (
+                  <div
+                    key={c.id}
+                    className="card card-bordered card-bordering mt-3"
+                  >
+                    <div className="card-body slim">
+                      <p
+                        className="text-primary text-bold"
+                        style={{ fontWeight: "bold" }}
+                      >
+                        {c.name}
+                      </p>
+                      <p>Tue 8:00 AM to 10:00 AM</p>
+                    </div>
+                  </div>
+                ))}
               </ul>
             </div>
             <div className="mt-3">
               <h4>Progress</h4>
               {ongoing.map((c) => (
-                <div>{c.name}</div>
+                <div
+                  key={c.id}
+                  className="card card-bordered card-bordering mt-3"
+                >
+                  <div className="card-body slim">
+                    <p
+                      className="text-primary text-bold"
+                      style={{ fontWeight: "bold" }}
+                    >
+                      {c.name}
+                    </p>
+                    <div className="pt-2">
+                      <div className="progress">
+                        <div
+                          className="progress-bar bg-success"
+                          role="progressbar"
+                          style={{ width: `${c.progress}%` }}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
           </div>
@@ -135,7 +177,9 @@ const DashboardV2 = () => {
               <h4>Training Buddies</h4>
             </div>
             <div className="p-3" style={{ background: "white" }}>
-              buddies
+              {buddies.map((b) => (
+                <div key={b}>{b}</div>
+              ))}
             </div>
           </div>
         </div>

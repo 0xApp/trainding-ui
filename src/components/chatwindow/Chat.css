@@ -1,0 +1,36 @@
+.chat-container {
+    position: fixed;
+    bottom: 0;
+    right: 70px;
+    width: 370px;
+    background-color: white;
+    border: solid 1px lightgray;
+}
+
+.chat-header {
+    padding: 8px 12px;
+    border-bottom: solid 1px lightgray;
+    font-weight: bold;
+}
+
+.chat-container .chats {
+    padding: 10px 12px 6px 12px;
+}
+
+.chat-to span {
+    width: 70%;
+    display: inline-block;
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+.chat-from span {
+    width: 70%;
+    display: inline-block;
+    padding: 6px;
+    margin-bottom: 10px;
+}
+
+.chat-text {
+    border-top: solid 1px lightgray;
+}

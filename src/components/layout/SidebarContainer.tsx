@@ -1,10 +1,14 @@
 import logo from "../../assets/img/logo.png";
+import { useStoreState } from "../../store";
+import Chat from "../chatwindow/Chat";
 
 interface Props {
   children: React.ReactNode;
 }
 
 const SidebarContainer: React.FC<Props> = ({ children }) => {
+
+    const { isOpen } = useStoreState(s => s.chatStore);
   return (
     <div className="wrapper">
       <nav id="sidebar" className="">
@@ -87,6 +91,7 @@ const SidebarContainer: React.FC<Props> = ({ children }) => {
         </ul>
       </nav>
       <div id="content">{children}</div>
+      {isOpen && <Chat />}
     </div>
   );
 };

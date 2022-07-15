@@ -21,3 +21,17 @@ export interface UserCourseUpdate {
   user: string;
   state: string;
 }
+
+export interface Chat {
+  id: number;
+  from_user: string;
+  to_user: string;
+  message: string;
+  time: string;
+}
+
+export interface CreateChat {
+  from: string;
+  to: string;
+  message: string;
+}

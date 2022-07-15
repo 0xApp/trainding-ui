@@ -1,16 +1,25 @@
+import useUserCourses from "../../hooks/useUserCourses";
+
 interface Props {
+  id: string;
   title: string;
   description: string;
   status: string;
   duration: number;
+  onUpdate: (id: string, status: string) => void;
 }
 
 const CourseInfo: React.FC<Props> = ({
+  id,
   title,
   description,
   status,
   duration,
+  onUpdate,
 }) => {
+  const handleCourseUpdate = (course: string, state: string) => {
+    onUpdate(course, state);
+  };
   return (
     <div className="card card-bordered card-bordering mb-3">
       <div className="card-body slim">
@@ -60,7 +69,38 @@ const CourseInfo: React.FC<Props> = ({
               </span>
             </div>
             <div className="text-right mt-3">
-              <button className="btn btn-primary btn-lg">Join</button>
+              {status === "NOT_STARTED" && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleCourseUpdate(id, "JOINED")}
+                >
+                  Join
+                </button>
+              )}
+              {status === "JOINED" && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleCourseUpdate(id, "STARTED")}
+                >
+                  Start
+                </button>
+              )}
+              {status === "STARTED" && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleCourseUpdate(id, "COMPLETED")}
+                >
+                  Complete
+                </button>
+              )}
+              {status === "COMPLETED" && (
+                <button
+                  className="btn btn-primary"
+                  onClick={() => handleCourseUpdate(id, "FEEDBACK")}
+                >
+                  Feedback
+                </button>
+              )}
             </div>
           </div>
         </div>
